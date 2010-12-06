@@ -1,0 +1,17 @@
+// this bit of complexity is to pull down the main build script from the alclabs maven repository
+// and then apply it.
+configurations { gradleScript }
+repositories { mavenRepo urls: 'http://labs.alcshare.com' }
+dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.0.0' }
+apply from: configurations.gradleScript.resolve().iterator().next()
+
+version = '1.0'
+
+dependencies {
+    compile 'commons-lang:commons-lang:2.5'
+    compile 'org.json:json:20080701'
+
+    providedCompile 'com.controlj.green:bacnet-api-addon:1.1.0.+'
+    providedCompile 'com.controlj.green:directaccess-api-addon:1.1.0.+'
+    providedCompile 'javax.servlet:servlet-api:2.5'
+}

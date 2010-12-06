@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--
+  Copyright (c) 2010, Automated Logic Corporation
+  All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+      * Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+      * Redistributions in binary form must reproduce the above copyright
+        notice, this list of conditions and the following disclaimer in the
+        documentation and/or other materials provided with the distribution.
+      * Neither the name of Automated Logic Corporation nor the
+        names of its contributors may be used to endorse or promote products
+        derived from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+  ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  DISCLAIMED. IN NO EVENT SHALL AUTOMATED LOGIC CORPORATION BE LIABLE FOR ANY
+  DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+  (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+  LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+  ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  -->
+<html>
+<head>
+    <!--
+    This tree is popuplated from AJAX calls to /servlets/discovery (DiscoveryServlet.java).
+    Selection of an object will cause the bottom of the page to be loaded with the
+    URL specified when the object node is built (data from DiscoveryServlet).  This
+    will be analoginput.jsp or schedule.jsp.
+    -->
+    <title>BACnet Discovery</title>
+    <script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="jquery/ui.core.js"></script>
+    <script type="text/javascript" src="jquery/jquery.cookie.js"></script>
+
+    <link rel='stylesheet' type='text/css' href='skin/ui.dynatree.css'>
+    <script type="text/javascript" src="js/jquery.dynatree.js"></script>
+    <style type="text/css">
+        #tree {
+            width:100%;
+            height:350px;
+            overflow:scroll;
+        }
+
+        div.ui-dynatree-container {
+            border:none;
+        }
+
+        td { vertical-align: top; }
+        #vborders td, #vborders th {
+            border-right:solid black 1px;
+            padding: 2px 5px 0px 5px;
+        }
+
+        .excell {
+            border-bottom:solid black 1px;
+        }
+    </style>
+
+    <script type='text/javascript'>
+    $(function(){
+        // Attach the dynatree widget to an existing <div id="tree"> element
+        // and pass the tree options as an argument to the dynatree() function:
+        $("#tree").dynatree({
+            title: "Networks",
+            rootVisible: false,
+            selectMode:1,
+            autoFocus:false,
+
+            initAjax: {
+                url: "servlets/discovery",
+                data: { }
+            },
+
+            onLazyRead: function(dtnode) {
+                dtnode.appendAjax({
+                    url:"servlets/discovery",
+                    data: {
+                        type: dtnode.data.childtype,
+                        id: dtnode.data.id,
+                        devid: dtnode.data.devid
+                    }
+                })
+            },
+
+            onActivate: function(node) {
+                if (node.data.renderpage) {
+                    $.get(node.data.renderpage, { id: node.data.id, devid: node.data.devid}, function(data) {
+                        $('#object_value').html(data)
+                    })
+                } else {
+                    $('#object_value').empty()
+                }
+            },
+
+            cache: false
+        });
+    });
+    </script>
+</head>
+<body>
+<div id="tree"></div>
+<div id="object_value"></div>
+</body>
+</html>
