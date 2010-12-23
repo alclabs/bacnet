@@ -27,7 +27,7 @@
 
     <servlet-mapping>
         <servlet-name>treedata</servlet-name>
-        <url-pattern>/servlets/discovery/*</url-pattern>
+        <url-pattern>/servlets/treedata/*</url-pattern>
     </servlet-mapping>
 
 
