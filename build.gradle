@@ -1,20 +1,25 @@
 // this bit of complexity is to pull down the main build script from the alclabs maven repository
 // and then apply it.
 configurations { gradleScript }
-repositories { mavenRepo url: 'http://repo.alcshare.com' }
-dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.16' }
+repositories { maven { url 'http://repo.alcshare.com' }
+//dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.16' }
+File addonGradle_gradle2 = new File( projectDir, '../repo/alcshare/gradle2/addon-gradle-1.7.2.gradle')
+dependencies { 
+   gradleScript files( addonGradle )
+   }
+
 apply from: configurations.gradleScript.resolve().iterator().next()
 
 info {
   name = 'BACnet Sample'
   description = 'Developer sample demonstrating the BACnet API'
-  version = '1.0'
+  version = '2.0'
   vendor = 'ALC Labs'
 }
 
 dependencies {
-    compile 'commons-lang:commons-lang:2.5'
-    compile 'org.json:json:20080701'
+    providedCompile 'commons-lang:commons-lang:2.5'
+    providedCompile 'org.json:json:20080701'
 
     providedCompile 'com.controlj.green:bacnet-api-addon:1.1.0'
     providedCompile 'com.controlj.green:directaccess-api-addon:1.1.0'
