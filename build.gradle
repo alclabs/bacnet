@@ -3,7 +3,7 @@
 configurations { gradleScript }
 repositories { maven { url 'http://repo.alcshare.com' }
 //dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.16' }
-File addonGradle_gradle2 = new File( projectDir, '../repo/alcshare/gradle2/addon-gradle-1.7.2.gradle')
+File addonGradle_gradle2 = new File( projectDir, 'repo/addon-gradle-1.7_LJT.gradle')
 dependencies { 
    gradleScript files( addonGradle )
    }
