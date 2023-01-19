@@ -1,12 +1,14 @@
 // this bit of complexity is to pull down the main build script from the alclabs maven repository
 // and then apply it.
 configurations { gradleScript }
-repositories { maven { url 'http://repo.alcshare.com' }
+repositories { maven { url 'http://repo.alcshare.com' } }
 //dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.16' }
 File addonGradle_gradle2 = new File( projectDir, 'repo/addon-gradle-1.7_LJT.gradle')
 dependencies { 
-   gradleScript files( addonGradle )
+   gradleScript files( addonGradle_gradle2 )
    }
+
+project.version="2.0"
 
 apply from: configurations.gradleScript.resolve().iterator().next()
 
