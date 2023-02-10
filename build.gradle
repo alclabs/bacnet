@@ -4,7 +4,7 @@ configurations { gradleScript }
 repositories 
 { 
     // nothing on alcrepo that we need
-    // maven { url 'http://repo.alcshare.com' allowInsecureProtocol=true } 
+    maven { url 'http://repo.alcshare.com' allowInsecureProtocol=true } 
 
     // location of unzipped WebCTRL SDK 1.8 
     flatDir {
@@ -12,12 +12,12 @@ repositories
     }
 }
 
-//dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '2.0.1' }
+dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '2.0.1' }
 
-File addonGradle_gradle = new File( projectDir, '../repo/alcshare/gradle7/addon-gradle-2.0.1.gradle')
-dependencies { 
-   gradleScript files( addonGradle_gradle )
-  }
+//File addonGradle_gradle = new File( projectDir, '../repo/alcshare/gradle7/addon-gradle-2.0.1.gradle')
+//dependencies { 
+//   gradleScript files( addonGradle_gradle )
+//  }
 
 project.version="2.8"
 
