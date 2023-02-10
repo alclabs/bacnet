@@ -12,9 +12,9 @@ repositories
     }
 }
 
-//dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.16' }
+//dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '2.0.1' }
 
-File addonGradle_gradle = new File( projectDir, 'repo/addon-gradle-2.0_LJT.gradle')
+File addonGradle_gradle = new File( projectDir, '../repo/alcshare/gradle7/addon-gradle-2.0.1.gradle')
 dependencies { 
    gradleScript files( addonGradle_gradle )
   }
