@@ -2,11 +2,11 @@
 // and then apply it.
 configurations { gradleScript }
 repositories { maven { url 'http://repo.alcshare.com' } }
-//dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.16' }
-File addonGradle_gradle2 = new File( projectDir, 'repo/addon-gradle-1.7_LJT.gradle')
-dependencies { 
-   gradleScript files( addonGradle_gradle2 )
-   }
+dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.7.2' }
+//File addonGradle_gradle2 = new File( projectDir, 'repo/addon-gradle-1.7_LJT.gradle')
+//dependencies { 
+//   gradleScript files( addonGradle_gradle2 )
+//   }
 
 project.version="2.0"
 
