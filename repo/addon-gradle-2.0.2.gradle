@@ -21,8 +21,7 @@ boolean includeJquery()
 if( includeJquery() )
 {
    repositories {
-       maven { url "https://repo.maven.apache.org/maven2" }
-       //mavenCentral()
+       mavenCentral()
 
        // since JQuery & JQueryUI are frequently used by add-ons, include their repo here as a convenience
        /*
@@ -76,7 +75,7 @@ task addon(description: "Produces the .addon file", type: Zip) {
    //extension = 'addon'
    // property names changed for readiness for gradle 8.0
    destinationDirectory = file("$buildDir/libs")
-   archiveBaseName = project.name.toLowerCase().replace( " ", "_" )+"_${project.version}"  // lower-case'ify the addon name to simplify usage in a web browser (which is case-sensitive)
+   archiveBaseName = project.name.toLowerCase().replace( " ", "_" )  // lower-case'ify the addon name to simplify usage in a web browser (which is case-sensitive)
    archiveExtension = 'addon'
    fileMode = 0644
 
@@ -360,15 +359,12 @@ idea {
 }
 
 buildscript {
-
     if( project.hasProperty( 'defineBuildScriptRepositories' ) )
         project.ext.defineBuildScriptRepositories( repositories )
     else
         repositories { 
-          maven { url "https://repo.maven.apache.org/maven2" }
-          //mavenCentral() 
+          mavenCentral() 
           }
-
     dependencies { classpath group: 'com.jidesoft', name: 'jide-oss', version: '2.9.0' }
 }
 
