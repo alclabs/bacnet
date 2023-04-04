@@ -2,20 +2,16 @@
 // and then apply it.
 configurations { gradleScript }
 repositories { maven { url 'http://repo.alcshare.com' } }
-dependencies { gradleScript group: 'com.alcshare', name: 'alclabs-gradle', ext: 'gradle', version: '1.7.2' }
-//File addonGradle_gradle2 = new File( projectDir, 'repo/addon-gradle-1.7_LJT.gradle')
-//dependencies { 
-//   gradleScript files( addonGradle_gradle2 )
-//   }
+dependencies { gradleScript group: 'com.alcshare', name: 'addon-gradle', ext: 'gradle', version: '1.7.2' }
 
-project.version="2.0"
+project.version="1.2.0"
 
 apply from: configurations.gradleScript.resolve().iterator().next()
 
 info {
   name = 'BACnet Sample'
   description = 'Developer sample demonstrating the BACnet API'
-  version = '2.0'
+  version = '1.2.0'
   vendor = 'ALC Labs'
 }
 
