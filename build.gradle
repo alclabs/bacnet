@@ -4,7 +4,8 @@
 configurations { gradleScript }
 repositories 
 { 
-//    maven { url 'http://repo.alcshare.com' allowInsecureProtocol=true } 
+    maven { url 'http://repo.alcshare.com' 
+            allowInsecureProtocol=true } 
 
     // location of unzipped WebCTRL SDK 1.8 
     flatDir {
@@ -12,21 +13,22 @@ repositories
     }
 }
 
-//dependencies { gradleScript group: 'com.alcshare', name: 'addon-gradle', ext: 'gradle', version: '2.0.2' }
+//File addonGradle_gradle = new File( projectDir, 'repo/addon-gradle-2.0.2.gradle')
+//dependencies {
+//   gradleScript files( addonGradle_gradle )
+//  }
 
- File addonGradle_gradle = new File( projectDir, 'repo/addon-gradle-2.0.2.gradle')
-dependencies {
-   gradleScript files( addonGradle_gradle )
-  }
+dependencies { gradleScript group: 'com.alcshare', name: 'addon-gradle', ext: 'gradle', version: '2.0.2' }
 
-project.version="2.8"
+
+project.version="2.8.0"
 
 apply from: configurations.gradleScript.resolve().iterator().next()
 
 info {
   name = 'BACnet Sample'
   description = 'Developer sample demonstrating the BACnet API'
-  version = '2.8'
+  version = '2.8.0'
   vendor = 'ALC Labs'
 }
 
