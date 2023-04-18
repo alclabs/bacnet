@@ -1,10 +1,15 @@
-bacnet
+bacnet 2.8.0
 ========
 
 The bacnet Add-On demonstrates some of the capabilities of the Add-On bacnet API. It demonstrates basic
 BACnet discovery and shows how to read some properties.
 
 This tree is implemented using a [dynatree](http://dynatree.googlecode.com/) jQuery based tree.
+
+This addon uses the addon-gradle-2.0.2.gradle script located on the repo in alcshare.
+The gradle.properties in the wrapper directory is now updated to use gradle distribution 7.3.3.  
+This version also expects the user to get and put the WebCTRL Addon 1.8.0 in a directory called sdk18 as a peer to this directory.  You can change where the addon libraries are found in the 'build.gradle' file.  
+
 
 Try it out
 ----------

@@ -1,25 +1,37 @@
+
 // this bit of complexity is to pull down the main build script from the alclabs maven repository
 // and then apply it.
 configurations { gradleScript }
-repositories { maven { url 'http://repo.alcshare.com' } }
-dependencies { gradleScript group: 'com.alcshare', name: 'addon-gradle', ext: 'gradle', version: '1.7.2' }
+repositories 
+{ 
+    maven { url 'http://repo.alcshare.com' 
+            allowInsecureProtocol=true } 
 
-project.version="1.2.0"
+    // location of unzipped WebCTRL SDK 1.8 
+    flatDir {
+      dirs '../sdk18/lib'
+    }
+}
+
+dependencies { gradleScript group: 'com.alcshare', name: 'addon-gradle', ext: 'gradle', version: '2.0.2' }
+
+project.version="2.8.0"
 
 apply from: configurations.gradleScript.resolve().iterator().next()
 
 info {
   name = 'BACnet Sample'
   description = 'Developer sample demonstrating the BACnet API'
-  version = '1.2.0'
+  version = '2.8.0'
   vendor = 'ALC Labs'
 }
 
 dependencies {
+    providedCompile 'com.intellij:annotations:7.0.3'
     providedCompile 'commons-lang:commons-lang:2.5'
     providedCompile 'org.json:json:20080701'
 
-    providedCompile 'com.controlj.green:bacnet-api-addon:1.1.0'
-    providedCompile 'com.controlj.green:directaccess-api-addon:1.1.0'
+    providedCompile 'com.controlj.green:bacnet-api-addon:1.8.1'
+    providedCompile 'com.controlj.green:directaccess-api-addon:1.8.1'
     providedCompile 'javax.servlet:servlet-api:2.5'
 }
